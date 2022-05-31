@@ -12,8 +12,14 @@ class AccountController extends AbstractController
     public function index(): JsonResponse
     {
         return $this->json([
-            'message' => 'Welcome to your new controller!',
-            'path' => 'src/Controller/AccountController.php',
+            '0' => [
+                'title' => 'Test 1',
+                'content' => 'Je suis un premier contenu de test',
+            ],
+            '1' => [
+                'title' => 'Test 2',
+                'content' => 'Je suis un second contenu de test',
+            ],
         ]);
     }
 }
