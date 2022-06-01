@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Account;
 use App\Form\AccountType;
 use App\Repository\AccountRepository;
+use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -21,7 +22,7 @@ class AccountController extends AbstractController
     /**
      * Get Accounts
      * GET /accounts
-     * Returns a list of account (all the accounts stored in the database for now).
+     * Returns a list of accounts (all the accounts stored in the database for now).
      */
     #[Route('', name: 'browse', methods: ['GET'])]
     public function browse(AccountRepository $accountRepository): JsonResponse
@@ -32,11 +33,11 @@ class AccountController extends AbstractController
     }
 
     /**
-     * Get Account
+     * Read Account
      * GET /accounts/{id}
-     * Return the Account object for the fiven id. It uses parameter conversion to find the account associated with the specified id.
+     * Returns the Account object for the fiven id. It uses parameter conversion to find the account associated with the specified id.
      */
-    #[Route('/{id}',name: 'read', methods: ['GET'])]
+    #[Route('/{id}', name: 'read', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function read(Account $account): JsonResponse
     {
         return $this->json($account, Response::HTTP_OK);
@@ -45,7 +46,7 @@ class AccountController extends AbstractController
     /**
      * Add Account
      * POST /accounts
-     * add a new Account object in the database.
+     * Add a new Account object in the database.
      */
     #[Route('', name: 'add', methods: ['POST'])]
     public function add(AccountRepository $accountRepository, Request $request): JsonResponse
@@ -61,8 +62,10 @@ class AccountController extends AbstractController
 
         if($form->isValid()) {
 
-            /** I call the add method of the repository, natively present since symfony 5.4/6.0 from memory,
-             * instead of calling doctrine and persisting and flushing the entity directly here. */
+            /**
+             * I call the add method of the repository, natively present since symfony 5.4/6.0 from memory,
+             * instead of calling doctrine and persisting and flushing the entity directly here.
+             */
             $accountRepository->add($account, true);
             
             return $this->json($account, Response::HTTP_CREATED);
@@ -71,5 +74,46 @@ class AccountController extends AbstractController
         $errorsString = (string) $form->getErrors(true);
 
         return $this->json($errorsString, Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * Edit Account
+     * PATCH /accounts/{id}
+     * Edit the Account object for the fiven id.
+     */
+    #[Route('/{id}', name: 'edit', methods: ['PATCH'], requirements: ['id' => '\d+'])]
+    public function edit(Account $account, ManagerRegistry $doctrine, Request $request): JsonResponse
+    {
+        $form = $this->createForm(AccountType::class, $account);
+
+        $json = $request->getContent();
+        $jsonArray = json_decode($json, true);
+
+        $form->submit($jsonArray);
+
+        if($form->isValid()) {
+
+            $em = $doctrine->getManager();
+            $em->flush();
+            
+            return $this->json($account, Response::HTTP_OK);
+        }
+
+        $errorsString = (string) $form->getErrors(true);
+
+        return $this->json($errorsString, Response::HTTP_BAD_REQUEST);
+    }
+
+    /**
+     * Delete Account
+     * DELETE /accounts/{id}
+     * Delete the Account object for the given id.
+     */
+    #[Route('/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d+'])]
+    public function delete(Account $account, AccountRepository $accountRepository)
+    {
+        $accountRepository->remove($account, true);
+
+        return $this->json(null, Response::HTTP_NO_CONTENT);
     }
 }
