@@ -173,6 +173,9 @@
     "symfony/event-dispatcher-contracts": {
         "version": "v3.1.0"
     },
+    "symfony/expression-language": {
+        "version": "v6.1.0"
+    },
     "symfony/filesystem": {
         "version": "v6.1.0"
     },
