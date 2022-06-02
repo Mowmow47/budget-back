@@ -29,18 +29,22 @@ class AccountController extends AbstractController
     {
         $accounts = $accountRepository->findAll();
 
-        return $this->json($accounts, Response::HTTP_OK);
+        return $this->json($accounts, Response::HTTP_OK, [], [
+            'groups' => ['account']
+        ]);
     }
 
     /**
      * Read Account
      * GET /accounts/{id}
-     * Returns the Account object for the fiven id. It uses parameter conversion to find the account associated with the specified id.
+     * Returns the Account object for the given id. It uses parameter conversion to find the account associated with the specified id.
      */
     #[Route('/{id}', name: 'read', methods: ['GET'], requirements: ['id' => '\d+'])]
     public function read(Account $account): JsonResponse
     {
-        return $this->json($account, Response::HTTP_OK);
+        return $this->json($account, Response::HTTP_OK, [], [
+            'groups' => ['account']
+        ]);
     }
 
     /**
@@ -79,7 +83,7 @@ class AccountController extends AbstractController
     /**
      * Edit Account
      * PATCH /accounts/{id}
-     * Edit the Account object for the fiven id.
+     * Edit the Account object for the given id.
      */
     #[Route('/{id}', name: 'edit', methods: ['PATCH'], requirements: ['id' => '\d+'])]
     public function edit(Account $account, ManagerRegistry $doctrine, Request $request): JsonResponse
@@ -96,7 +100,9 @@ class AccountController extends AbstractController
             $em = $doctrine->getManager();
             $em->flush();
             
-            return $this->json($account, Response::HTTP_OK);
+            return $this->json($account, Response::HTTP_OK, [], [
+                'groups' => ['account']
+            ]);
         }
 
         $errorsString = (string) $form->getErrors(true);
