@@ -27,7 +27,7 @@ class AccountController extends AbstractController
     #[Route('', name: 'browse', methods: ['GET'])]
     public function browse(AccountRepository $accountRepository): JsonResponse
     {
-        $accounts = $accountRepository->findAll();
+        $accounts = $accountRepository->findAccountsWithTransactions();
 
         return $this->json($accounts, Response::HTTP_OK, [], [
             'groups' => ['account']
