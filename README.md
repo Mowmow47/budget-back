@@ -12,7 +12,7 @@ There is no live demo at this time as the app is still in its early stages of de
 
 ## Technologies used
 
-The backend uses the following technologies:
+The back-end uses the following technologies:
 
 - [PHP 8.1](https://www.php.net/)
 - [Composer](https://getcomposer.org/)
@@ -21,5 +21,7 @@ The backend uses the following technologies:
     - Fixtures: [Nelmio Alice](https://github.com/nelmio/alice)
     - JWT authentication: [LexikJWTAuthenticationBundle](https://github.com/lexik/LexikJWTAuthenticationBundle) 
 - [MariaDB 10.7](https://mariadb.org/)
+- [Prettier](https://prettier.io/)
+- [Git](https://git-scm.com/)
 
 If you're curious, don't forget to take a look at the [front-end repository](https://github.com/Mowmow47/budget-front) as well.
