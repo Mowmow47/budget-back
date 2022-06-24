@@ -23,7 +23,7 @@ class AccountController extends AbstractController
      * GET /accounts
      * Returns a list of accounts (all the accounts stored in the database for now).
      */
-    #[Route('', name: 'browse', methods: ['GET'])]
+    #[Route('', name: 'browse')]
     public function browse(AccountRepository $accountRepository): Response
     {
         $accounts = $accountRepository->findAccountsWithTransactions();
@@ -38,7 +38,7 @@ class AccountController extends AbstractController
      * GET /accounts/{id}
      * Returns the Account object for the given id. It uses parameter conversion to find the account associated with the specified id.
      */
-    #[Route('/{id}', name: 'read', methods: ['GET'], requirements: ['id' => '\d+'])]
+    #[Route('/{id}', name: 'read', requirements: ['id' => '\d+'])]
     public function read(Account $account): Response
     {
         return $this->render('account/browse.html.twig', [
@@ -51,7 +51,7 @@ class AccountController extends AbstractController
      * POST /accounts
      * Add a new Account object in the database.
      */
-    #[Route('', name: 'add', methods: ['POST'])]
+    #[Route('', name: 'add')]
     public function add(AccountRepository $accountRepository, Request $request): Response
     {
         $account = new Account();
@@ -85,7 +85,7 @@ class AccountController extends AbstractController
      * PATCH /accounts/{id}
      * Edit the Account object for the given id.
      */
-    #[Route('/{id}', name: 'edit', methods: ['PATCH'], requirements: ['id' => '\d+'])]
+    #[Route('/{id}', name: 'edit', requirements: ['id' => '\d+'])]
     public function edit(Account $account, ManagerRegistry $doctrine, Request $request): Response
     {
         $form = $this->createForm(AccountType::class, $account);
