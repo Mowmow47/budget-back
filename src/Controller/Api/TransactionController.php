@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\Entity\Transaction;
 use App\Form\TransactionType;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Controller used for transactions management.
  */
-#[Route('/transactions', name: 'api_transactions_')]
+#[Route('/api/transactions', name: 'api_transactions_')]
 class TransactionController extends AbstractController
 {
     /**
