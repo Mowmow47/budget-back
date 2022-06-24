@@ -2,7 +2,7 @@
 
 ## Description
 
-This project is a SPA (Single-Page Application) which consists in a back-end (Symfony) communicating through an API with the front-end (VueJS). It's meant to be a budget management application which I'll personally use.
+This project is a ~~SPA (Single-Page Application) which consists in a back-end (Symfony) communicating through an API with the front-end (VueJS)~~ I temporarily decided to build this application exclusively with Symfony then I'll work on the API/Frontend. It's meant to be a budget management application which I'll personally use.
 
 The application will allow the user to add multiple bank accounts and import payment transactions ,manually only at first, the banks APIs are not "open to anyone". The user will also be able to see his account balance, previsions of the account balance over a certain period of time, categorize his spendings and see its largest expense categories and many more...
 
