@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Api;
 
 use App\Entity\Transaction;
 use App\Form\TransactionType;
@@ -15,7 +15,7 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * Controller used for transactions management.
  */
-#[Route('/transactions', name: 'api_transactions_')]
+#[Route('/api/transactions', name: 'api_transactions_')]
 class TransactionController extends AbstractController
 {
     /**
@@ -51,7 +51,7 @@ class TransactionController extends AbstractController
 
     /**
      * Edit Transaction
-     * PATCH /transactions/{transaction_id}
+     * PATCH /transactions/{id}
      * Edit the Transaction object for the given id.
      */
     #[Route('/{id}', name: 'edit', methods: ['PATCH'], requirements: ['id' => '\d+'])]
@@ -81,7 +81,7 @@ class TransactionController extends AbstractController
 
     /**
      * Delete Transaction
-     * DELETE /transactions/{transaction_id}
+     * DELETE /transactions/{id}
      * Delete the Transaction object for the given id.
      */
     #[Route('/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d+'])]

@@ -39,28 +39,21 @@ class AccountRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Account[] Returns an array of Account objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('a.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
-
-//    public function findOneBySomeField($value): ?Account
-//    {
-//        return $this->createQueryBuilder('a')
-//            ->andWhere('a.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+    /**
+     * Retrieve all the accounts from the database (it will only retrieve the accounts which belongs to the authenticated user in the future)
+     * 
+     * @param string $date
+     * @return Account[] Returns an array of Account objects
+     */
+    public function findAccountsWithTransactions(string $date = 'Y-m-d'): array
+    {
+        return $this->createQueryBuilder('a')
+            ->leftJoin('a.transactions', 't')
+            ->where('t.date <= :now')
+            ->setParameter('now', date($date))
+            ->addSelect('t')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 }
