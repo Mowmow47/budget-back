@@ -36,11 +36,14 @@ class AccountController extends AbstractController
     /**
      * Read Account
      * GET /accounts/{id}
-     * Returns the Account object for the given id. It uses parameter conversion to find the account associated with the specified id.
+     * Returns the Account object for the given id with all the related transactions.
      */
     #[Route('/{id}', name: 'read', requirements: ['id' => '\d+'])]
-    public function read(Account $account): Response
+    public function read(Account $account, AccountRepository $accountRepository): Response
     {
+        $accountId = $account->getId();
+        $account = $accountRepository->findAccountsWithTransactions($accountId);
+
         return $this->render('account/read.html.twig', [
             'account' => $account,
         ]);

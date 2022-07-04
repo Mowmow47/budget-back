@@ -6,6 +6,6 @@ App\Entity\Account:
 
 App\Entity\Transaction:
   Transaction{1..200}:
-    amount: "<randomFloat(2, 0, 1500)>"
+    amount: "<randomFloat(2, -500, 1500)>"
     account: "@Account*"
     date: '<dateTimeBetween("-6 months", "now")>'
