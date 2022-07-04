@@ -1,5 +1,5 @@
 App\Entity\Account:
-  Account{1..10}:
+  Account{1..20}:
     name: '<randomElement(["PEL", "Livret A", "Compte Courant"])>'
     accountnumber: "<numerify('############')>"
     bankName: '<randomElement(["Crédit Agricole", "Crédit Mutuel", "Société Générale", "Boursorama"])>'

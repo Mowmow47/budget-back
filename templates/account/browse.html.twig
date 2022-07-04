@@ -3,13 +3,33 @@
 {% block title %} Account - {{ parent() }}{% endblock %}
 
 {% block body %}
-    <div class="bg-slate-100 flex-grow">
-        <ul>
-            {% for account in accounts %}
-                <li>{{ account.name }}</li>
-                <li>{{ account.accountnumber }}</li>
-                <li>{{ account.bankName }}</li>
-            {% endfor %}
-        </ul>
-    </div>
+    {% for account in accounts %}
+        <div class="bg-white rounded-xl p-4 divide-y-2 divide-solid divide-slate-300 mb-2 font-semibold">
+            <div class="flex flex-row justify-between mb-2">
+                <div>
+                    <span class="block text-xl">
+                        {{ account.name }}
+                    </span>
+                    <span class="text-gray-700 font-normal">
+                        {{ account.accountnumber }}
+                    </span>
+                </div>
+                <div>
+                    <span class="text-green-500">
+                        1.528€
+                    </span>
+                </div>
+            </div>
+            <div class="flex flex-row justify-between pt-2">
+                <div>
+                    <span class="text-red-500">
+                        -37.57%
+                    </span>
+                </div>
+                <div>
+                    <span class="font-normal">Au 31/07 :</span> <span class="text-green-500">954€</span>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
 {% endblock %}
