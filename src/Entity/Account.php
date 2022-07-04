@@ -28,9 +28,6 @@ class Account
     #[ORM\Column(type: 'string', length: 80, nullable: true)]
     #[Groups(["account"])]
     private $bankName;
-    
-    #[ORM\Column(type: 'float', nullable: true)]
-    private $interestRate;
 
     #[ORM\OneToMany(mappedBy: 'account', targetEntity: Transaction::class, orphanRemoval: true)]
     #[Groups(["account"])]
@@ -84,18 +81,6 @@ class Account
     {
         $this->bankName = $bankName;
         
-        return $this;
-    }
-
-    public function getInterestRate(): ?float
-    {
-        return $this->interestRate;
-    }
-    
-    public function setInterestRate(?float $interestRate): self
-    {
-        $this->interestRate = $interestRate;
-    
         return $this;
     }
 

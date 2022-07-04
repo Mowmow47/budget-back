@@ -3,5 +3,13 @@
 {% block title %} Account - {{ parent() }}{% endblock %}
 
 {% block body %}
-
+    <div class="bg-slate-100 flex-grow">
+        <ul>
+            {% for account in accounts %}
+                <li>{{ account.name }}</li>
+                <li>{{ account.accountnumber }}</li>
+                <li>{{ account.bankName }}</li>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}

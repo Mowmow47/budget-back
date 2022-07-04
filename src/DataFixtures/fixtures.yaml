@@ -1,9 +1,8 @@
 App\Entity\Account:
   Account{1..10}:
-    name: '<randomElement(["PEL", "Livret A", "PEA", "Compte Courant"])>'
+    name: '<randomElement(["PEL", "Livret A", "Compte Courant"])>'
     accountnumber: "<numerify('############')>"
     bankName: '<randomElement(["Crédit Agricole", "Crédit Mutuel", "Société Générale", "Boursorama"])>'
-    interestRate: "<randomFloat(1, 0, 5)>"
 
 App\Entity\Transaction:
   Transaction{1..200}:
