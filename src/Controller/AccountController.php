@@ -26,7 +26,7 @@ class AccountController extends AbstractController
     #[Route('', name: 'browse')]
     public function browse(AccountRepository $accountRepository): Response
     {
-        $accounts = $accountRepository->findAccountsWithTransactions();
+        $accounts = $accountRepository->findAll();
 
         return $this->render('account/browse.html.twig', [
             'accounts' => $accounts,
@@ -41,7 +41,7 @@ class AccountController extends AbstractController
     #[Route('/{id}', name: 'read', requirements: ['id' => '\d+'])]
     public function read(Account $account): Response
     {
-        return $this->render('account/browse.html.twig', [
+        return $this->render('account/read.html.twig', [
             'account' => $account,
         ]);
     }
