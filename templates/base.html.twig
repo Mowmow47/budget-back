@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}MyBudget{% endblock %}</title>
-        {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
-        {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
-        {% endblock %}
-
-        {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body class="bg-red-50">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}MyBudget{% endblock %}</title>
+    {% block stylesheets %}
+      {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+    {% block javascripts %}
+      {{ encore_entry_script_tags('app') }}
+    {% endblock %}
+  </head>
+  <body class="flex min-h-screen flex-col bg-gray-200">
+    <main class="mx-4 mt-4 mb-16 flex-grow">
         {% block body %}{% endblock %}
-    </body>
+    </main>
+    <footer class="fixed bottom-0 min-w-full">
+      {% include "navbar.html.twig" %}
+    </footer>
+  </body>
 </html>

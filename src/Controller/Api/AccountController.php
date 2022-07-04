@@ -21,7 +21,7 @@ class AccountController extends AbstractController
 {
     /**
      * Get Accounts
-     * GET /accounts
+     * GET /api/accounts
      * Returns a list of accounts (all the accounts stored in the database for now).
      */
     #[Route('', name: 'browse', methods: ['GET'])]
@@ -36,7 +36,7 @@ class AccountController extends AbstractController
 
     /**
      * Read Account
-     * GET /accounts/{id}
+     * GET /api/accounts/{id}
      * Returns the Account object for the given id. It uses parameter conversion to find the account associated with the specified id.
      */
     #[Route('/{id}', name: 'read', methods: ['GET'], requirements: ['id' => '\d+'])]
@@ -49,7 +49,7 @@ class AccountController extends AbstractController
 
     /**
      * Add Account
-     * POST /accounts
+     * POST /api/accounts
      * Add a new Account object in the database.
      */
     #[Route('', name: 'add', methods: ['POST'])]
@@ -82,7 +82,7 @@ class AccountController extends AbstractController
 
     /**
      * Edit Account
-     * PATCH /accounts/{id}
+     * PATCH /api/accounts/{id}
      * Edit the Account object for the given id.
      */
     #[Route('/{id}', name: 'edit', methods: ['PATCH'], requirements: ['id' => '\d+'])]
@@ -112,7 +112,7 @@ class AccountController extends AbstractController
 
     /**
      * Delete Account
-     * DELETE /accounts/{id}
+     * DELETE /api/accounts/{id}
      * Delete the Account object for the given id.
      */
     #[Route('/{id}', name: 'delete', methods: ['DELETE'], requirements: ['id' => '\d+'])]

@@ -40,20 +40,21 @@ class AccountRepository extends ServiceEntityRepository
     }
 
     /**
-     * Retrieve all the accounts from the database (it will only retrieve the accounts which belongs to the authenticated user in the future)
+     * Returns the Account object for the given id with all the related transactions.
      * 
-     * @param string $date
-     * @return Account[] Returns an array of Account objects
+     * @param int $id
+     * @return Account Returns an Account object or null
      */
-    public function findAccountsWithTransactions(string $date = 'Y-m-d'): array
+    public function findAccountsWithTransactions(int $id): Account
     {
         return $this->createQueryBuilder('a')
             ->leftJoin('a.transactions', 't')
-            ->where('t.date <= :now')
-            ->setParameter('now', date($date))
+            ->where('a.id = :id')
+            ->setParameter('id', $id)
             ->addSelect('t')
+            ->orderBy('t.date', 'DESC')
             ->getQuery()
-            ->getResult()
+            ->getOneOrNullResult()
         ;
     }
 }
