@@ -9,3 +9,4 @@ App\Entity\Transaction:
     amount: "<randomFloat(2, -500, 1500)>"
     account: "@Account*"
     date: '<dateTimeBetween("-6 months", "now")>'
+    description: "<sentence(3)>"
