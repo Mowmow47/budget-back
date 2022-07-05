@@ -3,5 +3,12 @@
 {% block title %} Account - {{ parent() }}{% endblock %}
 
 {% block body %}
-
+    <div class="mb-2 rounded-xl bg-white p-4 font-semibold">
+        {{ form_start(form) }}
+        {{ form_row(form.name) }}
+        {{ form_row(form.accountNumber) }}
+        {{ form_row(form.bankName) }}
+        <button>Envoyer</button>
+        {{ form_end(form) }}
+    </div>
 {% endblock %}
