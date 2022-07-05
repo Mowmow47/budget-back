@@ -1,15 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'base.html.twig' %} 
 
 {% block title %} Account - {{ parent() }}{% endblock %}
 
-{% block body %}
+{% block body %} 
   {% for account in accounts %}
     <div class="mb-2 rounded-xl bg-white p-4 font-semibold">
-      <a href="{{ path('app_accounts_read', { id: account.id }) }}" class="block divide-y-2 divide-solid divide-slate-300">
+      <a
+        href="{{ path('app_accounts_read', { id: account.id }) }}"
+        class="block divide-y-2 divide-solid divide-slate-300"
+      >
         <div class="mb-2 flex flex-row justify-between">
           <div>
             <span class="block text-xl"> {{ account.name }} </span>
-            <span class="font-normal text-gray-700"> {{ account.accountnumber }} </span>
+            <span class="font-normal text-gray-700">
+              {{ account.accountnumber }}
+            </span>
           </div>
           <div>
             <span class="text-green-500"> 1.528€ </span>
@@ -19,9 +24,12 @@
           <div>
             <span class="text-red-500"> -37.57% </span>
           </div>
-          <div><span class="font-normal">Au 31/07 :</span> <span class="text-green-500">954€</span></div>
+          <div>
+            <span class="font-normal">Au 31/07 :</span>
+            <span class="text-green-500">954€</span>
+          </div>
         </div>
       </a>
     </div>
-  {% endfor %}
+  {% endfor %} 
 {% endblock %}
